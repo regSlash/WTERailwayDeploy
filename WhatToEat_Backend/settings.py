@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 from datetime import timedelta
 from django.conf import settings
@@ -9,7 +10,7 @@ SECRET_KEY = 'django-insecure-idi4wrb_m7=t2q*g@(rihh6=e6c9#)pem73f%*2+tis+rglc5-
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -35,6 +36,14 @@ REST_FRAMEWORK = {
     )
 
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
